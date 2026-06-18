@@ -1,69 +1,36 @@
 <template>
-  <v-container fluid class="fill-height">
-    <v-row class="text-center" justify="center" align="center">
-      <v-col cols="12"
-             md="3">
-       <v-card elevation="2" height="520" color="white">
-         <v-card-title class="justify-center black--text font-weight-bold">Front End</v-card-title>
-         <v-img
-             class="mx-lg-auto"
-             width="80"
-             src="../assets/ux-interface.png"
-         ></v-img>
-         <v-card-text class="text--primary">
-           <v-list class="transparent">
-             <v-list-item
-                 class="black--text font-weight-bold"
-                 v-for="item in frondEnd"
-                 :key="item"
-             >
-               <v-list-item-title>{{ item }}</v-list-item-title>
-             </v-list-item>
-           </v-list>
-         </v-card-text>
-       </v-card>
+  <v-container fluid class="py-16">
+    <v-row justify="center" class="mb-16">
+      <v-col cols="12" md="10">
+        <h1 class="display-3 font-weight-black text-center mb-4" style="color: #0A192F;">
+          My Tech Stack
+        </h1>
+        <p class="body-1 grey--text text-center" style="font-size: 1.1rem;">
+          Technologies I use to build amazing products
+        </p>
       </v-col>
-      <v-col cols="12"
-             md="3">
-        <v-card elevation="2" height="520" color="white">
-          <v-card-title class="justify-center black--text font-weight-bold">Back End</v-card-title>
-          <v-img
-              class="mx-lg-auto"
-              width="80"
-              src="../assets/web-development.png"
-          ></v-img>
-          <v-card-text class="text--primary">
-            <v-list class="transparent">
-              <v-list-item
-                  class="black--text font-weight-bold"
-                  v-for="item in backEnd"
-                  :key="item"
+    </v-row>
+
+    <v-row justify="center">
+      <v-col cols="12" md="5" lg="3" class="mb-8" v-for="(category, index) in categories" :key="index">
+        <v-card elevation="4" class="rounded-lg h-100" style="background: #ffffff;">
+          <v-card-title class="text-center pb-2 pt-6">
+            <v-icon x-large color="primary" class="mb-3">{{ category.icon }}</v-icon>
+            <h3 class="headline font-weight-bold" style="color: #0A192F;">{{ category.title }}</h3>
+          </v-card-title>
+          <v-card-text class="pt-0">
+            <div class="d-flex flex-wrap justify-center">
+              <v-chip
+                v-for="(item, i) in category.items"
+                :key="i"
+                class="ma-1"
+                outlined
+                color="primary"
+                small
               >
-                <v-list-item-title>{{ item }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12"
-             md="3">
-        <v-card elevation="2" height="520" color="white">
-          <v-card-title class="justify-center black--text font-weight-bold">Tools</v-card-title>
-          <v-img
-              class="mx-lg-auto"
-              width="80"
-              src="../assets/settings.png"
-          ></v-img>
-          <v-card-text class="text--primary">
-            <v-list class="transparent">
-              <v-list-item
-                  class="black--text font-weight-bold"
-                  v-for="item in tools"
-                  :key="item"
-              >
-                <v-list-item-title>{{ item }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
+                {{ item }}
+              </v-chip>
+            </div>
           </v-card-text>
         </v-card>
       </v-col>
@@ -77,9 +44,28 @@ export default Vue.extend({
   name: 'Stack',
 
   data: () => ({
-      frondEnd: ['Vue','Vuetify', 'HTML 5', 'CSS', 'JavaScript', 'Flutter'],
-      backEnd: ['java', 'Sql', 'Hibernate', 'Spring boot', 'Wildfly', 'Junit','Firebase cloud'],
-      tools: ['Jenkins', 'Git', 'Maven', 'Jira', 'Confluence', 'UML'],
+    categories: [
+      {
+        title: 'Front End',
+        icon: 'mdi-laptop',
+        items: ['Vue.js', 'Vuetify', 'HTML 5', 'CSS 3', 'JavaScript', 'TypeScript', 'Flutter', 'React']
+      },
+      {
+        title: 'Back End',
+        icon: 'mdi-server',
+        items: ['Java', 'Spring Boot', 'Hibernate', 'SQL', 'MySQL', 'Node.js', 'REST APIs']
+      },
+      {
+        title: 'DevOps & Cloud',
+        icon: 'mdi-cloud-outline',
+        items: ['Docker', 'Kubernetes', 'AWS', 'Jenkins', 'Git', 'Linux']
+      },
+      {
+        title: 'Banking & Fintech',
+        icon: 'mdi-bank',
+        items: ['Payment Systems', 'Core Banking', 'ISO 8583', 'SWIFT', 'KYC/AML', 'PCI DSS']
+      }
+    ]
   }),
 });
 </script>
